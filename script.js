@@ -61,6 +61,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const rightWrap = document.querySelector('.right-wrap');
 
         leftWrap.addEventListener('click', function(e) {
+            // content-box 클릭 시 링크 이동
+            if (e.target.closest('.content-box')) {
+                const link = this.querySelector('a');
+                if (link) {
+                    window.location.href = link.href;
+                }
+                return;
+            }
             e.preventDefault();
             // Show left section slides
             currentMobileSlide = 0;
@@ -70,6 +78,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         rightWrap.addEventListener('click', function(e) {
+            // content-box 클릭 시 링크 이동
+            if (e.target.closest('.content-box')) {
+                const link = this.querySelector('a');
+                if (link) {
+                    window.location.href = link.href;
+                }
+                return;
+            }
             e.preventDefault();
             // Show right section slides
             currentMobileSlide = leftSlides.length;
