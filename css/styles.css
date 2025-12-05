@@ -461,6 +461,17 @@ img {
     .content-box:hover {
         transform: scale(1.1);
     }
+
+    /* 모바일에서는 off 클래스의 grayscale 효과 제거 */
+    .left-section.off .left-image-item,
+    .right-section.off .right-image-item {
+        filter: none !important;
+    }
+
+    /* 모바일에서 hover 상태 무효화 */
+    .content-box:active {
+        background: rgba(0, 0, 0, 0.4);
+    }
 }
 
 /* VISIT BUTTON STYLES */
