@@ -448,6 +448,9 @@ img {
         height: 230px;
         padding: 20px;
         transition: transform 0.3s ease;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid #fff;
+        border-radius: 50%;
     }
 
     .left-wrap .content-box {
@@ -466,11 +469,6 @@ img {
     .left-section.off .left-image-item,
     .right-section.off .right-image-item {
         filter: none !important;
-    }
-
-    /* 모바일에서 hover 상태 무효화 */
-    .content-box:active {
-        background: rgba(0, 0, 0, 0.4);
     }
 }
 

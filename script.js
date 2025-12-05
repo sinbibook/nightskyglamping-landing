@@ -202,4 +202,65 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // Fix for mobile Safari back navigation issue
+    if (isMobile) {
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                // Force redraw when returning from back/forward cache
+                document.body.style.display = 'none';
+                document.body.offsetHeight; // Trigger reflow
+                document.body.style.display = '';
+
+                // Force repaint on both sections
+                const leftSection = document.querySelector('.left-section');
+                const rightSection = document.querySelector('.right-section');
+
+                if (leftSection) {
+                    leftSection.style.opacity = '0.99';
+                    setTimeout(() => {
+                        leftSection.style.opacity = '1';
+                    }, 10);
+                }
+
+                if (rightSection) {
+                    rightSection.style.opacity = '0.99';
+                    setTimeout(() => {
+                        rightSection.style.opacity = '1';
+                    }, 10);
+                }
+
+                // Force content-box styles to reapply
+                const contentBoxes = document.querySelectorAll('.content-box');
+                contentBoxes.forEach(box => {
+                    box.style.background = 'rgba(0, 0, 0, 0.39)';
+                    setTimeout(() => {
+                        box.style.background = 'rgba(0, 0, 0, 0.4)';
+                    }, 10);
+                });
+            }
+        });
+
+        // Ensure visibility on focus
+        window.addEventListener('focus', function() {
+            const leftSection = document.querySelector('.left-section');
+            const rightSection = document.querySelector('.right-section');
+
+            if (leftSection) {
+                leftSection.style.visibility = 'visible';
+                leftSection.style.opacity = '1';
+            }
+
+            if (rightSection) {
+                rightSection.style.visibility = 'visible';
+                rightSection.style.opacity = '1';
+            }
+
+            // Ensure content-box backgrounds are visible
+            const contentBoxes = document.querySelectorAll('.content-box');
+            contentBoxes.forEach(box => {
+                box.style.background = 'rgba(0, 0, 0, 0.4)';
+            });
+        });
+    }
 });
